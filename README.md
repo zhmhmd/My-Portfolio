@@ -1,5 +1,7 @@
 # Zhakhongir Makhamadaminov — Portfolio
 
+# my-portfolio-production-zhakhongir.up.railway.app
+
 Personal portfolio website showcasing my backend 
 development projects and technical skills.
 
