@@ -1,0 +1,665 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Zhakhongir Makhamadaminov — Backend Developer</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Figtree:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,300;1,400&family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet"/>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+
+:root{
+  --bg:#f2f0eb;
+  --bg2:#ebe9e3;
+  --black:#0e0e0e;
+  --black2:#1c1c1c;
+  --mid:#888;
+  --light:#bbb;
+  --border:#d8d5ce;
+  --accent:#0e0e0e;
+  --red:#d63c2f;
+  --ff:'Figtree',sans-serif;
+  --fs:'DM Serif Display',serif;
+}
+
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--black);font-family:var(--ff);overflow-x:hidden}
+::selection{background:var(--black);color:var(--bg)}
+::-webkit-scrollbar{width:3px}
+::-webkit-scrollbar-track{background:var(--bg)}
+::-webkit-scrollbar-thumb{background:var(--black)}
+
+/* ── NAV ── */
+nav{
+  position:fixed;top:0;left:0;right:0;z-index:100;
+  display:flex;align-items:center;justify-content:space-between;
+  padding:1.4rem 3.5rem;
+  background:rgba(242,240,235,.92);
+  backdrop-filter:blur(16px);
+  border-bottom:1px solid var(--border);
+}
+.nav-brand{
+  font-family:var(--ff);font-weight:800;font-size:.85rem;
+  letter-spacing:.04em;text-transform:uppercase;
+  color:var(--black);text-decoration:none;
+}
+.nav-links{display:flex;gap:2.8rem;list-style:none;align-items:center}
+.nav-links a{
+  font-size:.75rem;font-weight:500;letter-spacing:.06em;
+  text-transform:uppercase;color:var(--mid);
+  text-decoration:none;transition:color .2s;
+}
+.nav-links a:hover{color:var(--black)}
+.nav-cta{
+  font-size:.72rem;font-weight:600;letter-spacing:.06em;
+  text-transform:uppercase;color:var(--bg);
+  background:var(--black);padding:.5rem 1.3rem;
+  border-radius:100px;text-decoration:none;
+  transition:opacity .2s;
+}
+.nav-cta:hover{opacity:.75}
+
+/* ── HERO ── */
+#hero{
+  min-height:100vh;padding:10rem 3.5rem 5rem;
+  display:grid;grid-template-columns:1fr 1fr;
+  gap:4rem;align-items:center;
+  border-bottom:1px solid var(--border);
+}
+.hero-left{}
+.hero-eyebrow{
+  display:inline-flex;align-items:center;gap:.6rem;
+  font-size:.72rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;
+  color:var(--mid);margin-bottom:2.5rem;
+}
+.dot{width:5px;height:5px;background:var(--red);border-radius:50%;animation:blink 2s infinite}
+@keyframes blink{0%,100%{opacity:1}50%{opacity:.2}}
+
+h1{
+  font-family:var(--fs);font-size:clamp(3.5rem,5.5vw,5.5rem);
+  line-height:1.0;letter-spacing:-.02em;color:var(--black);
+  margin-bottom:2rem;
+}
+h1 em{font-style:italic;color:var(--mid)}
+
+.hero-desc{
+  font-size:1rem;font-weight:400;color:var(--mid);
+  line-height:1.75;max-width:440px;margin-bottom:2.5rem;
+}
+
+.hero-pills{display:flex;flex-wrap:wrap;gap:.5rem;margin-bottom:3rem}
+.pill{
+  font-size:.68rem;font-weight:600;letter-spacing:.04em;
+  padding:.35rem .9rem;background:var(--bg2);border:1px solid var(--border);
+  border-radius:100px;color:var(--black2);transition:all .2s;
+}
+.pill:hover{background:var(--black);color:var(--bg);border-color:var(--black)}
+
+.hero-btns{display:flex;gap:1rem;flex-wrap:wrap}
+.btn-primary{
+  font-size:.8rem;font-weight:700;letter-spacing:.04em;
+  padding:.9rem 2rem;background:var(--black);color:var(--bg);
+  border-radius:100px;text-decoration:none;
+  transition:all .2s;display:inline-flex;align-items:center;gap:.5rem;
+}
+.btn-primary:hover{background:var(--black2);transform:translateY(-1px)}
+.btn-secondary{
+  font-size:.8rem;font-weight:600;letter-spacing:.04em;
+  padding:.9rem 2rem;background:transparent;color:var(--black);
+  border:1.5px solid var(--border);border-radius:100px;
+  text-decoration:none;transition:all .2s;
+}
+.btn-secondary:hover{border-color:var(--black)}
+
+/* hero right */
+.hero-right{display:flex;flex-direction:column;gap:2rem}
+.hero-card{
+  background:var(--bg2);border:1px solid var(--border);border-radius:16px;
+  padding:2rem;
+}
+.hero-card-label{
+  font-size:.65rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;
+  color:var(--mid);margin-bottom:1rem;
+}
+.status-row{
+  display:flex;align-items:center;gap:.7rem;
+  font-size:.88rem;font-weight:600;color:var(--black);
+}
+.status-dot{width:8px;height:8px;background:#22c55e;border-radius:50%;flex-shrink:0;box-shadow:0 0 0 3px rgba(34,197,94,.2)}
+
+.meta-row{
+  display:grid;grid-template-columns:1fr 1fr;gap:1.2rem;
+}
+.meta-item{}
+.meta-key{font-size:.65rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--light);margin-bottom:.25rem}
+.meta-val{font-size:.9rem;font-weight:600;color:var(--black)}
+
+/* ── MARQUEE ── */
+.marquee-wrap{
+  overflow:hidden;border-top:1px solid var(--border);
+  border-bottom:1px solid var(--border);
+  padding:1rem 0;background:var(--black);
+}
+.marquee-track{
+  display:flex;gap:3rem;width:max-content;
+  animation:scroll 18s linear infinite;
+}
+@keyframes scroll{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
+.marquee-item{
+  font-size:.75rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;
+  color:var(--bg);white-space:nowrap;display:flex;align-items:center;gap:.8rem;
+}
+.marquee-item::after{content:'·';color:var(--red)}
+
+/* ── SECTION BASE ── */
+section{padding:6rem 3.5rem}
+.s-label{
+  font-size:.68rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;
+  color:var(--mid);margin-bottom:.6rem;
+}
+h2{
+  font-family:var(--fs);font-size:clamp(2.2rem,3.5vw,3.2rem);
+  line-height:1.1;letter-spacing:-.02em;color:var(--black);
+  margin-bottom:3.5rem;
+}
+
+/* ── ABOUT ── */
+#about{
+  border-top:1px solid var(--border);
+  border-bottom:1px solid var(--border);
+  background:var(--bg);
+}
+.about-grid{display:grid;grid-template-columns:1fr 1.4fr;gap:6rem;align-items:start}
+.about-left h2{margin-bottom:1.5rem}
+.about-left p{font-size:.95rem;color:var(--mid);line-height:1.85;margin-bottom:1rem}
+.about-left strong{color:var(--black);font-weight:700}
+.about-right{display:flex;flex-direction:column;gap:0}
+
+.stat-row{
+  display:grid;grid-template-columns:1fr 1fr;
+  border:1px solid var(--border);
+  border-bottom:none;
+}
+.stat-row:last-child{border-bottom:1px solid var(--border)}
+.stat-cell{
+  padding:1.8rem 2rem;position:relative;
+}
+.stat-cell:first-child{border-right:1px solid var(--border)}
+.stat-num{
+  font-family:var(--fs);font-size:3rem;color:var(--black);
+  line-height:1;margin-bottom:.3rem;
+}
+.stat-label{font-size:.72rem;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--mid)}
+.stat-bar{
+  position:absolute;bottom:0;left:0;height:2px;
+  background:var(--black);width:0;transition:width .6s .2s;
+}
+.stat-cell:hover .stat-bar{width:100%}
+
+/* ── PROJECTS ── */
+#projects{border-bottom:1px solid var(--border)}
+.projects-list{display:flex;flex-direction:column;gap:0}
+.project-row{
+  display:grid;grid-template-columns:80px 1fr auto;
+  gap:2rem;align-items:start;
+  padding:2.5rem 0;border-bottom:1px solid var(--border);
+  transition:background .2s;cursor:default;
+  border-radius:0;
+}
+.project-row:first-child{border-top:1px solid var(--border)}
+.project-row:hover{background:var(--bg2);margin:0 -3.5rem;padding-left:3.5rem;padding-right:3.5rem}
+
+.proj-num{
+  font-size:.72rem;font-weight:700;letter-spacing:.08em;
+  color:var(--light);padding-top:.2rem;
+}
+.proj-body{}
+.proj-name{
+  font-family:var(--fs);font-size:1.6rem;letter-spacing:-.01em;
+  color:var(--black);margin-bottom:.6rem;line-height:1.2;
+}
+.proj-desc{font-size:.88rem;color:var(--mid);line-height:1.75;max-width:600px;margin-bottom:1rem}
+.proj-tags{display:flex;flex-wrap:wrap;gap:.4rem}
+.tag{
+  font-size:.62rem;font-weight:700;letter-spacing:.05em;
+  padding:.22rem .65rem;background:var(--bg);border:1px solid var(--border);
+  border-radius:4px;color:var(--black2);
+}
+.proj-right{display:flex;flex-direction:column;align-items:flex-end;gap:.8rem;padding-top:.2rem;min-width:120px}
+.proj-link{
+  font-size:.72rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;
+  color:var(--black);text-decoration:none;
+  display:inline-flex;align-items:center;gap:.4rem;
+  border-bottom:1.5px solid var(--black);padding-bottom:1px;
+  transition:opacity .2s;white-space:nowrap;
+}
+.proj-link:hover{opacity:.5}
+.proj-features{list-style:none}
+.proj-features li{
+  font-size:.78rem;color:var(--mid);padding:.2rem 0;
+  display:flex;align-items:flex-start;gap:.5rem;line-height:1.5;
+}
+.proj-features li::before{content:'—';color:var(--light);flex-shrink:0;font-size:.7rem;margin-top:.15rem}
+
+/* ── SKILLS ── */
+#skills{
+  border-bottom:1px solid var(--border);
+  background:var(--black);
+}
+#skills .s-label{color:#666}
+#skills h2{color:var(--bg)}
+.skills-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:0;border:1px solid #2a2a2a}
+.skill-col{
+  padding:2.5rem;border-right:1px solid #2a2a2a;
+}
+.skill-col:last-child{border-right:none}
+.skill-col-title{
+  font-size:.65rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;
+  color:#555;margin-bottom:1.5rem;
+}
+.skill-item{
+  display:flex;align-items:center;justify-content:space-between;
+  padding:.6rem 0;border-bottom:1px solid #1e1e1e;
+}
+.skill-item:last-child{border-bottom:none}
+.skill-name{font-size:.88rem;font-weight:500;color:#e0e0e0}
+.skill-dot{width:6px;height:6px;background:var(--red);border-radius:50%;flex-shrink:0}
+
+/* ── CONTACT ── */
+#contact{border-bottom:1px solid var(--border)}
+.contact-inner{
+  display:grid;grid-template-columns:1fr 1fr;gap:6rem;align-items:start;
+}
+.contact-left h2{margin-bottom:1rem}
+.contact-left p{font-size:.95rem;color:var(--mid);line-height:1.85;max-width:380px}
+
+.link-list{display:flex;flex-direction:column;gap:.8rem}
+.link-item{
+  display:flex;align-items:center;justify-content:space-between;
+  padding:1.2rem 1.4rem;
+  background:var(--bg2);border:1px solid var(--border);border-radius:12px;
+  text-decoration:none;color:var(--black);
+  transition:all .2s;
+}
+.link-item:hover{background:var(--black);color:var(--bg);border-color:var(--black);transform:translateX(4px)}
+.link-item:hover .link-arrow{color:var(--bg)}
+.link-name{font-size:.9rem;font-weight:700}
+.link-sub{font-size:.72rem;color:var(--mid);margin-top:.1rem}
+.link-item:hover .link-sub{color:#888}
+.link-arrow{font-size:1.1rem;color:var(--mid);transition:color .2s}
+
+/* ── FOOTER ── */
+footer{
+  padding:2.5rem 3.5rem;
+  display:flex;align-items:center;justify-content:space-between;
+  border-top:1px solid var(--border);
+}
+.footer-l{font-size:.78rem;font-weight:600;color:var(--black)}
+.footer-r{font-size:.72rem;color:var(--mid)}
+
+/* ── REVEAL ── */
+.reveal{opacity:0;transform:translateY(24px);transition:opacity .65s ease,transform .65s ease}
+.reveal.visible{opacity:1;transform:translateY(0)}
+
+/* ── RESPONSIVE ── */
+@media(max-width:900px){
+  nav{padding:1rem 1.4rem}
+  #hero{padding:8rem 1.4rem 4rem;grid-template-columns:1fr}
+  section{padding:4rem 1.4rem}
+  .about-grid,.contact-inner{grid-template-columns:1fr;gap:3rem}
+  .skills-grid{grid-template-columns:1fr}
+  .skill-col{border-right:none;border-bottom:1px solid #2a2a2a}
+  .project-row:hover{margin:0 -1.4rem;padding-left:1.4rem;padding-right:1.4rem}
+  .project-row{grid-template-columns:50px 1fr}
+  .proj-right{display:none}
+  footer{flex-direction:column;gap:.8rem;padding:2rem 1.4rem;text-align:center}
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a class="nav-brand" href="#">Zhakhongir M.</a>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#projects">Work</a></li>
+    <li><a href="#skills">Stack</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+  <a class="nav-cta" href="#contact">Hire me</a>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-left reveal">
+    <div class="hero-eyebrow"><span class="dot"></span>Backend Developer · Osh, KG</div>
+    <h1>Hello, I'm<br/><em>Zhakhongir</em><br/>Makhamadaminov</h1>
+    <p class="hero-desc">
+      Building scalable APIs and backend systems with Python.
+      Currently interning at SmartHouse — shipping production-grade
+      CRM, booking platforms & beauty studio automation.
+    </p>
+    <div class="hero-pills">
+      <span class="pill">FastAPI</span>
+      <span class="pill">Django DRF</span>
+      <span class="pill">PostgreSQL</span>
+      <span class="pill">Docker</span>
+      <span class="pill">Redis + Celery</span>
+      <span class="pill">JWT / OAuth2</span>
+    </div>
+    <div class="hero-btns">
+      <a class="btn-primary" href="#projects">View my work →</a>
+      <a class="btn-secondary" href="#contact">Get in touch</a>
+    </div>
+  </div>
+
+  <div class="hero-right reveal" style="animation-delay:.15s">
+    <div class="hero-card">
+      <div class="hero-card-label">Current status</div>
+      <div class="status-row">
+        <span class="status-dot"></span>
+        Available for freelance & remote work
+      </div>
+    </div>
+    <div class="hero-card">
+      <div class="hero-card-label">Quick info</div>
+      <div class="meta-row">
+        <div class="meta-item">
+          <div class="meta-key">Role</div>
+          <div class="meta-val">Backend Developer</div>
+        </div>
+        <div class="meta-item">
+          <div class="meta-key">Location</div>
+          <div class="meta-val">Osh, KG</div>
+        </div>
+        <div class="meta-item">
+          <div class="meta-key">Experience</div>
+          <div class="meta-val">1+ years</div>
+        </div>
+        <div class="meta-item">
+          <div class="meta-key">Projects</div>
+          <div class="meta-val">4 shipped</div>
+        </div>
+      </div>
+    </div>
+    <div class="hero-card">
+      <div class="hero-card-label">Presented by</div>
+      <div style="font-size:.95rem;font-weight:700;color:var(--black);margin-bottom:.2rem">Zhakhongir Makhamadaminov</div>
+      <div style="font-size:.8rem;color:var(--mid)">github.com/zhmhmd</div>
+    </div>
+  </div>
+</section>
+
+<!-- MARQUEE -->
+<div class="marquee-wrap">
+  <div class="marquee-track">
+    <span class="marquee-item">FastAPI</span>
+    <span class="marquee-item">Django REST Framework</span>
+    <span class="marquee-item">PostgreSQL</span>
+    <span class="marquee-item">Docker</span>
+    <span class="marquee-item">Redis</span>
+    <span class="marquee-item">Celery</span>
+    <span class="marquee-item">SQLAlchemy Async</span>
+    <span class="marquee-item">Pydantic v2</span>
+    <span class="marquee-item">Alembic</span>
+    <span class="marquee-item">JWT / OAuth2</span>
+    <span class="marquee-item">Swagger UI</span>
+    <span class="marquee-item">Backend Developer</span>
+    <span class="marquee-item">FastAPI</span>
+    <span class="marquee-item">Django REST Framework</span>
+    <span class="marquee-item">PostgreSQL</span>
+    <span class="marquee-item">Docker</span>
+    <span class="marquee-item">Redis</span>
+    <span class="marquee-item">Celery</span>
+    <span class="marquee-item">SQLAlchemy Async</span>
+    <span class="marquee-item">Pydantic v2</span>
+    <span class="marquee-item">Alembic</span>
+    <span class="marquee-item">JWT / OAuth2</span>
+    <span class="marquee-item">Swagger UI</span>
+    <span class="marquee-item">Backend Developer</span>
+  </div>
+</div>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="about-grid">
+    <div class="reveal">
+      <div class="s-label">About me</div>
+      <h2>Backend Engineer<br/><em style="font-style:italic;color:var(--mid)">& problem solver.</em></h2>
+      <p>I'm a <strong>17-year-old Backend Developer</strong> based in Osh, Kyrgyzstan. Currently interning at SmartHouse, building a full CRM system and Telegram bot from scratch in production.</p>
+      <p>My trajectory: <strong>Backend → AI/ML → Software Architecture.</strong> I care deeply about clean code, real architectural thinking, and writing systems that scale — not just systems that work.</p>
+      <p>Outside of APIs and databases, I have hands-on experience with <strong>ANPR and parking camera systems</strong>, and I'm actively exploring IoT integration and LLM pipelines as my next frontier.</p>
+    </div>
+    <div class="reveal" style="animation-delay:.12s">
+      <div class="stat-row">
+        <div class="stat-cell">
+          <div class="stat-num">4</div>
+          <div class="stat-label">Projects built</div>
+          <div class="stat-bar"></div>
+        </div>
+        <div class="stat-cell">
+          <div class="stat-num">1+</div>
+          <div class="stat-label">Years coding</div>
+          <div class="stat-bar"></div>
+        </div>
+      </div>
+      <div class="stat-row">
+        <div class="stat-cell">
+          <div class="stat-num">17</div>
+          <div class="stat-label">Years old</div>
+          <div class="stat-bar"></div>
+        </div>
+        <div class="stat-cell">
+          <div class="stat-num">KG</div>
+          <div class="stat-label">Osh based</div>
+          <div class="stat-bar"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROJECTS -->
+<section id="projects">
+  <div class="s-label reveal">Selected work</div>
+  <h2 class="reveal">4 projects.</h2>
+  <div class="projects-list">
+
+    <div class="project-row reveal">
+      <div class="proj-num">01</div>
+      <div class="proj-body">
+        <div class="proj-name">CRM Internship System</div>
+        <p class="proj-desc">A full-featured CRM built to automate internal business processes and manage client data at scale. Designed with SOLID principles and Clean Architecture — ready for any frontend.</p>
+        <div class="proj-tags">
+          <span class="tag">Django DRF</span>
+          <span class="tag">PostgreSQL</span>
+          <span class="tag">Redis</span>
+          <span class="tag">Celery</span>
+          <span class="tag">Docker</span>
+          <span class="tag">RBAC</span>
+        </div>
+      </div>
+      <div class="proj-right">
+        <a class="proj-link" href="https://github.com/zhmhmd/CRM-Internship" target="_blank">GitHub ↗</a>
+        <ul class="proj-features">
+          <li>Full CRUD client management</li>
+          <li>Role-based access control</li>
+          <li>Background task automation</li>
+          <li>Telegram bot support</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="project-row reveal" style="animation-delay:.08s">
+      <div class="proj-num">02</div>
+      <div class="proj-body">
+        <div class="proj-name">Booking Platform API</div>
+        <p class="proj-desc">Backend for event management and ticket booking. Three user roles, full booking lifecycle, async email reset via Celery + Redis, and auto-generated Swagger docs.</p>
+        <div class="proj-tags">
+          <span class="tag">Django DRF</span>
+          <span class="tag">PostgreSQL</span>
+          <span class="tag">Token Auth</span>
+          <span class="tag">Celery</span>
+          <span class="tag">Redis</span>
+          <span class="tag">Swagger</span>
+          <span class="tag">Docker</span>
+        </div>
+      </div>
+      <div class="proj-right">
+        <a class="proj-link" href="https://github.com/zhmhmd/Booking-Platform" target="_blank">GitHub ↗</a>
+        <ul class="proj-features">
+          <li>User · Organizer · Admin roles</li>
+          <li>Ticket types & seat check</li>
+          <li>Cart and booking system</li>
+          <li>Password reset via email</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="project-row reveal" style="animation-delay:.12s">
+      <div class="proj-num">03</div>
+      <div class="proj-body">
+        <div class="proj-name">PinkLashes — Web Platform</div>
+        <p class="proj-desc">Full-stack web app automating a beauty studio. Client-facing booking interface + admin panel for managing masters, schedules, services and incoming appointments.</p>
+        <div class="proj-tags">
+          <span class="tag">Django 4.x</span>
+          <span class="tag">PostgreSQL</span>
+          <span class="tag">HTML/CSS/JS</span>
+          <span class="tag">Redis</span>
+          <span class="tag">Celery</span>
+          <span class="tag">Docker</span>
+        </div>
+      </div>
+      <div class="proj-right">
+        <a class="proj-link" href="https://github.com/zhmhmd/PinkLashes" target="_blank">GitHub ↗</a>
+        <ul class="proj-features">
+          <li>Service catalogue with pricing</li>
+          <li>Online booking — master & slot</li>
+          <li>Client personal cabinet</li>
+          <li>Full admin dashboard</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="project-row reveal" style="animation-delay:.16s">
+      <div class="proj-num">04</div>
+      <div class="proj-body">
+        <div class="proj-name">PinkLashes — FastAPI Backend</div>
+        <p class="proj-desc">Async FastAPI backend for the same beauty studio — scalable RESTful API for services, masters, scheduling and bookings with JWT auth, Alembic migrations, Docker.</p>
+        <div class="proj-tags">
+          <span class="tag">FastAPI</span>
+          <span class="tag">SQLAlchemy Async</span>
+          <span class="tag">Pydantic v2</span>
+          <span class="tag">Alembic</span>
+          <span class="tag">PostgreSQL</span>
+          <span class="tag">JWT / OAuth2</span>
+          <span class="tag">Docker</span>
+        </div>
+      </div>
+      <div class="proj-right">
+        <a class="proj-link" href="https://github.com/zhmhmd/PinkLashes_FastAPI" target="_blank">GitHub ↗</a>
+        <ul class="proj-features">
+          <li>Async booking endpoints</li>
+          <li>Full CRUD for services & masters</li>
+          <li>JWT + OAuth2 auth</li>
+          <li>Swagger UI & ReDoc autodocs</li>
+        </ul>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- SKILLS -->
+<section id="skills">
+  <div class="s-label reveal">Technical stack</div>
+  <h2 class="reveal">What I work with.</h2>
+  <div class="skills-grid">
+    <div class="skill-col reveal">
+      <div class="skill-col-title">Backend</div>
+      <div class="skill-item"><span class="skill-name">FastAPI</span><span class="skill-dot"></span></div>
+      <div class="skill-item"><span class="skill-name">Django / DRF</span><span class="skill-dot"></span></div>
+      <div class="skill-item"><span class="skill-name">Python 3.10+</span><span class="skill-dot"></span></div>
+      <div class="skill-item"><span class="skill-name">Async / Await</span><span class="skill-dot"></span></div>
+      <div class="skill-item"><span class="skill-name">REST API Design</span><span class="skill-dot"></span></div>
+      <div class="skill-item"><span class="skill-name">Pydantic v2</span><span class="skill-dot"></span></div>
+    </div>
+    <div class="skill-col reveal" style="animation-delay:.1s">
+      <div class="skill-col-title">Database & Queue</div>
+      <div class="skill-item"><span class="skill-name">PostgreSQL</span><span class="skill-dot"></span></div>
+      <div class="skill-item"><span class="skill-name">SQLAlchemy Async</span><span class="skill-dot"></span></div>
+      <div class="skill-item"><span class="skill-name">Tortoise ORM</span><span class="skill-dot"></span></div>
+      <div class="skill-item"><span class="skill-name">Alembic Migrations</span><span class="skill-dot"></span></div>
+      <div class="skill-item"><span class="skill-name">Redis Caching</span><span class="skill-dot"></span></div>
+      <div class="skill-item"><span class="skill-name">Celery Tasks</span><span class="skill-dot"></span></div>
+    </div>
+    <div class="skill-col reveal" style="animation-delay:.2s">
+      <div class="skill-col-title">Infrastructure & Auth</div>
+      <div class="skill-item"><span class="skill-name">Docker & Compose</span><span class="skill-dot"></span></div>
+      <div class="skill-item"><span class="skill-name">JWT / OAuth2</span><span class="skill-dot"></span></div>
+      <div class="skill-item"><span class="skill-name">Swagger / ReDoc</span><span class="skill-dot"></span></div>
+      <div class="skill-item"><span class="skill-name">Git & GitHub</span><span class="skill-dot"></span></div>
+      <div class="skill-item"><span class="skill-name">SOLID & Clean Arch</span><span class="skill-dot"></span></div>
+      <div class="skill-item"><span class="skill-name">RBAC Patterns</span><span class="skill-dot"></span></div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="contact-inner">
+    <div class="reveal">
+      <div class="s-label">Contact</div>
+      <h2>Let's build<br/><em style="font-style:italic;color:var(--mid)">something great.</em></h2>
+      <p>Available for freelance projects, remote work, and new opportunities. Based in Osh — open to work with teams worldwide.</p>
+    </div>
+    <div class="link-list reveal" style="animation-delay:.12s">
+      <a class="link-item" href="https://github.com/zhmhmd" target="_blank">
+        <div>
+          <div class="link-name">GitHub</div>
+          <div class="link-sub">github.com/zhmhmd</div>
+        </div>
+        <span class="link-arrow">↗</span>
+      </a>
+      <a class="link-item" href="https://www.linkedin.com/in/zhakhongir-makhamadaminov-5377b4381/" target="_blank">
+        <div>
+          <div class="link-name">LinkedIn</div>
+          <div class="link-sub">Zhakhongir Makhamadaminov</div>
+        </div>
+        <span class="link-arrow">↗</span>
+      </a>
+      <a class="link-item" href="https://www.fiverr.com/zhakhong1r" target="_blank">
+        <div>
+          <div class="link-name">Fiverr</div>
+          <div class="link-sub">fiverr.com/zhakhong1r</div>
+        </div>
+        <span class="link-arrow">↗</span>
+      </a>
+      <a class="link-item" href="https://kwork.ru/user/johongir260908" target="_blank">
+        <div>
+          <div class="link-name">Kwork</div>
+          <div class="link-sub">kwork.ru/johongir260908</div>
+        </div>
+        <span class="link-arrow">↗</span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-l">Zhakhongir Makhamadaminov — Backend Developer</div>
+  <div class="footer-r">Osh, Kyrgyzstan · 2025</div>
+</footer>
+
+<script>
+const obs=new IntersectionObserver(entries=>{
+  entries.forEach(e=>{if(e.isIntersecting)e.target.classList.add('visible')})
+},{threshold:.12});
+document.querySelectorAll('.reveal').forEach(el=>obs.observe(el));
+</script>
+</body>
+</html>
