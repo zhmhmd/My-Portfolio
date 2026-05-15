@@ -2,7 +2,7 @@
 
 Personal portfolio of a Backend Developer based in Osh, Kyrgyzstan.
 
-## 🌐 Live: my-portfolio-production-zhakhongir.up.railway.app
+🌐 Live: my-portfolio-production-zhakhongir.up.railway.app
 
 ## About
 This is my personal portfolio website showcasing my backend development projects, technical skills, and contact links. Built with pure HTML, CSS and JavaScript — no frameworks, no dependencies, no build step.
